@@ -2,16 +2,16 @@
 
 #include <public.sdk/source/vst/vstaudioeffect.h>
 
-namespace vstsync {
+namespace dawsync {
 
-struct vstsyncProcessor : public Steinberg::Vst::AudioEffect {
-    vstsyncProcessor();
-    ~vstsyncProcessor() SMTG_OVERRIDE;
+struct dawsyncProcessor : public Steinberg::Vst::AudioEffect {
+    dawsyncProcessor();
+    ~dawsyncProcessor() SMTG_OVERRIDE;
 
     // Create function
     static Steinberg::FUnknown* createInstance(void* /*context*/)
     {
-        return reinterpret_cast<Steinberg::Vst::IAudioProcessor*>(new vstsyncProcessor);
+        return reinterpret_cast<Steinberg::Vst::IAudioProcessor*>(new dawsyncProcessor);
     }
 
     //--- ---------------------------------------------------------------------

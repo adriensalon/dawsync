@@ -2,17 +2,17 @@
 
 #include <public.sdk/source/vst/vsteditcontroller.h>
 
-namespace vstsync {
+namespace dawsync {
 
-struct vstsyncController : public Steinberg::Vst::EditControllerEx1 {
-    vstsyncController() = default;
-    ~vstsyncController() SMTG_OVERRIDE = default;
+struct dawsyncController : public Steinberg::Vst::EditControllerEx1 {
+    dawsyncController() = default;
+    ~dawsyncController() SMTG_OVERRIDE = default;
 
     // Create function
     static Steinberg::FUnknown* createInstance(void* context)
     {
         (void)context;
-        return reinterpret_cast<Steinberg::Vst::IEditController*>(new vstsyncController);
+        return reinterpret_cast<Steinberg::Vst::IEditController*>(new dawsyncController);
     }
 
     // IPluginBase
@@ -21,7 +21,7 @@ struct vstsyncController : public Steinberg::Vst::EditControllerEx1 {
 
     // EditController
     Steinberg::tresult PLUGIN_API setComponentState(Steinberg::IBStream* state) SMTG_OVERRIDE;
-    // Steinberg::IPlugView* PLUGIN_API createView (Steinberg::FIDString name) SMTG_OVERRIDE;
+    Steinberg::IPlugView* PLUGIN_API createView(Steinberg::FIDString name) SMTG_OVERRIDE;
     Steinberg::tresult PLUGIN_API setState(Steinberg::IBStream* state) SMTG_OVERRIDE;
     Steinberg::tresult PLUGIN_API getState(Steinberg::IBStream* state) SMTG_OVERRIDE;
     Steinberg::tresult PLUGIN_API setParamNormalized(Steinberg::Vst::ParamID tag,

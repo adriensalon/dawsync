@@ -6,19 +6,19 @@
 
 using namespace Steinberg;
 
-namespace vstsync {
+namespace dawsync {
 
-vstsyncProcessor::vstsyncProcessor()
+dawsyncProcessor::dawsyncProcessor()
 {
     //--- set the wanted controller for our processor
-    setControllerClass(kvstsyncControllerUID);
+    setControllerClass(kdawsyncControllerUID);
 }
 
-vstsyncProcessor::~vstsyncProcessor()
+dawsyncProcessor::~dawsyncProcessor()
 {
 }
 
-tresult PLUGIN_API vstsyncProcessor::initialize(FUnknown* context)
+tresult PLUGIN_API dawsyncProcessor::initialize(FUnknown* context)
 {
     // Here the Plug-in will be instantiated
 
@@ -39,7 +39,7 @@ tresult PLUGIN_API vstsyncProcessor::initialize(FUnknown* context)
     return kResultOk;
 }
 
-tresult PLUGIN_API vstsyncProcessor::terminate()
+tresult PLUGIN_API dawsyncProcessor::terminate()
 {
     // Here the Plug-in will be de-instantiated, last possibility to remove some memory!
 
@@ -47,13 +47,13 @@ tresult PLUGIN_API vstsyncProcessor::terminate()
     return AudioEffect::terminate();
 }
 
-tresult PLUGIN_API vstsyncProcessor::setActive(TBool state)
+tresult PLUGIN_API dawsyncProcessor::setActive(TBool state)
 {
     //--- called when the Plug-in is enable/disable (On/Off) -----
     return AudioEffect::setActive(state);
 }
 
-tresult PLUGIN_API vstsyncProcessor::process(Vst::ProcessData& data)
+tresult PLUGIN_API dawsyncProcessor::process(Vst::ProcessData& data)
 {
     //--- First : Read inputs parameter changes-----------
 
@@ -79,13 +79,13 @@ tresult PLUGIN_API vstsyncProcessor::process(Vst::ProcessData& data)
     return kResultOk;
 }
 
-tresult PLUGIN_API vstsyncProcessor::setupProcessing(Vst::ProcessSetup& newSetup)
+tresult PLUGIN_API dawsyncProcessor::setupProcessing(Vst::ProcessSetup& newSetup)
 {
     //--- called before any processing ----
     return AudioEffect::setupProcessing(newSetup);
 }
 
-tresult PLUGIN_API vstsyncProcessor::canProcessSampleSize(int32 symbolicSampleSize)
+tresult PLUGIN_API dawsyncProcessor::canProcessSampleSize(int32 symbolicSampleSize)
 {
     // by default kSample32 is supported
     if (symbolicSampleSize == Vst::kSample32)
@@ -98,7 +98,7 @@ tresult PLUGIN_API vstsyncProcessor::canProcessSampleSize(int32 symbolicSampleSi
     return kResultFalse;
 }
 
-tresult PLUGIN_API vstsyncProcessor::setState(IBStream* state)
+tresult PLUGIN_API dawsyncProcessor::setState(IBStream* state)
 {
     // called when we load a preset, the model has to be reloaded
     IBStreamer streamer(state, kLittleEndian);
@@ -106,7 +106,7 @@ tresult PLUGIN_API vstsyncProcessor::setState(IBStream* state)
     return kResultOk;
 }
 
-tresult PLUGIN_API vstsyncProcessor::getState(IBStream* state)
+tresult PLUGIN_API dawsyncProcessor::getState(IBStream* state)
 {
     // here we need to save the model
     IBStreamer streamer(state, kLittleEndian);

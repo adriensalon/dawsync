@@ -5,10 +5,10 @@
 #include <plugin/processor.h>
 #include <plugin/version.h>
 
-#define stringPluginName "vstsync"
+#define stringPluginName "DAWSync"
 
 using namespace Steinberg::Vst;
-using namespace vstsync;
+using namespace dawsync;
 
 //------------------------------------------------------------------------
 //  VST Plug-in Entry
@@ -17,24 +17,24 @@ using namespace vstsync;
 // GetPluginFactory function!
 //------------------------------------------------------------------------
 
-BEGIN_FACTORY_DEF("My Plug-in Company",
-    "https://www.mycompanyname.com",
-    "mailto:info@mycompanyname.com")
+BEGIN_FACTORY_DEF("adrien salon",
+    "https://www.github.com/adriensalon",
+    "mailto:adrien.salon@gmail.com")
 
 //---First Plug-in included in this factory-------
 // its kVstAudioEffectClass component
-DEF_CLASS2(INLINE_UID_FROM_FUID(kvstsyncProcessorUID),
+DEF_CLASS2(INLINE_UID_FROM_FUID(kdawsyncProcessorUID),
     PClassInfo::kManyInstances, // cardinality
     kVstAudioEffectClass, // the component category (do not changed this)
     stringPluginName, // here the Plug-in name (to be changed)
     Vst::kDistributable, // means that component and controller could be distributed on different computers
-    vstsyncVST3Category, // Subcategory for this Plug-in (to be changed)
+    dawsyncVST3Category, // Subcategory for this Plug-in (to be changed)
     FULL_VERSION_STR, // Plug-in version (to be changed)
     kVstVersionString, // the VST 3 SDK version (do not changed this, use always this define)
-    vstsyncProcessor::createInstance) // function pointer called when this component should be instantiated
+    dawsyncProcessor::createInstance) // function pointer called when this component should be instantiated
 
 // its kVstComponentControllerClass component
-DEF_CLASS2(INLINE_UID_FROM_FUID(kvstsyncControllerUID),
+DEF_CLASS2(INLINE_UID_FROM_FUID(kdawsyncControllerUID),
     PClassInfo::kManyInstances, // cardinality
     kVstComponentControllerClass, // the Controller category (do not changed this)
     stringPluginName "Controller", // controller name (could be the same than component name)
@@ -42,7 +42,7 @@ DEF_CLASS2(INLINE_UID_FROM_FUID(kvstsyncControllerUID),
     "", // not used here
     FULL_VERSION_STR, // Plug-in version (to be changed)
     kVstVersionString, // the VST 3 SDK version (do not changed this, use always this define)
-    vstsyncController::createInstance) // function pointer called when this component should be instantiated
+    dawsyncController::createInstance) // function pointer called when this component should be instantiated
 
 //----for others Plug-ins contained in this factory, put like for the first Plug-in different DEF_CLASS2---
 
