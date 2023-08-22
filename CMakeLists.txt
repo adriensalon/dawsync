@@ -7,8 +7,7 @@ project(vstsync
 	# Version number symbols usable in C++ can be found in
 	# source/plugin/version.h and ${PROJECT_BINARY_DIR}/projectversion.h.
 	VERSION 1.0.0.0
-	DESCRIPTION "vstsync VST 3 Plug-in"
-)
+	DESCRIPTION "VSTSync plug-in")
 
 add_subdirectory(external)
 
@@ -16,16 +15,26 @@ set(SMTG_VSTGUI_ROOT "${SDK_ROOT}")
 
 smtg_enable_vst3_sdk()
 
-smtg_add_vst3plugin(vstsync
-	source/network/test.cpp
+set(vstsync_glue_sources
+	source/glue/mix.cpp
+	source/glue/network.cpp
+	source/glue/transport.cpp)
+
+set(vstsync_widgets_sources)
+
+set(vstsync_plugin_sources
 	source/plugin/version.h
 	source/plugin/cids.h
 	source/plugin/processor.h
 	source/plugin/processor.cpp
 	source/plugin/controller.h
 	source/plugin/controller.cpp
-	source/plugin/entry.cpp
-)
+	source/plugin/entry.cpp)
+
+smtg_add_vst3plugin(vstsync PACKAGE_NAME "VSTSync" SOURCES_LIST
+	${vstsync_glue_sources}
+	${vstsync_widgets_sources}
+	${vstsync_plugin_sources})
 
 if(SMTG_ADD_VSTGUI)
 	target_sources(vstsync PRIVATE resource/plugin_editor.uidesc)
